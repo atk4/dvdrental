@@ -7,6 +7,11 @@ class RentalAuth extends BasicAuth {
 
         $this->usePasswordEncryption('sha256/salt');
     }
+    function check(){
+        if(!$this->isLoggedIn()){
+            $this->api->redirect('/');
+        }
+    }
     function verifyCredintials($email,$password){
         $model = $this->getModel()->loadBy('email',$email);
         if(!$model->isInstanceLoaded())return false;
