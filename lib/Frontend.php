@@ -15,8 +15,16 @@ class Frontend extends ApiFrontend {
         $this->js()->_load('atk4_univ');
         $this->dbConnect();
 
+        $this->auth=$this->add('RentalAuth');
+        $this->auth->allow('demo','demo');
+
         $menu = $this->add('Menu',null,'Menu');
-        $menu->addMenuItem('Schema Generator','sg');
-        $menu->addMenuItem('Manager','mgr');
+        if($this->auth){
+            $menu->addMenuItem('Home','video');
+            $menu->addMenuItem('account');
+            $menu->addMenuItem('logout');
+        }else{
+            $menu->addMenuItem('Home','index');
+        }
     }
 }
