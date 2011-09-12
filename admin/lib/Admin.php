@@ -10,12 +10,18 @@ class Admin extends ApiFrontend {
         $this->addLocation('..',array(
                     'php'=>array(
                         'lib',
-                        'atk4-addons/mvc',
-                        'atk4-addons/billing/lib',
-                        'atk4-addons/misc/lib',
                         )
                     ))
             ->setParent($this->pathfinder->base_location);
+
+        $this->addLocation('../atk4-addons',array(
+                    'php'=>array(
+                        'mvc',
+                        'misc/lib',
+                        )
+                    ))
+            ->setParent($this->pathfinder->atk_location);
+
 
         $this->add('jUI');
         $this->js()
