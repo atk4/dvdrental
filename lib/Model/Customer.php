@@ -6,5 +6,6 @@ class Model_Customer extends Model_Table {
         parent::init();
 
         $this->addField('name');
+        $this->addField('email');
     }
 }
