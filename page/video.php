@@ -11,7 +11,23 @@ class page_video extends Page {
             $rental = $grid->getModel()->loadData($_GET['rent'])->rent($this->api->auth->get('id'));
 
             $grid->js(null,
-                    $this->js()->reload())->univ()->successMessage('Rented successfully #'.$rental->get('id'));
+                    $this->js()->reload())->univ()->successMessage('Rented successfully #'.$rental->get('id'))
+                ->execute();
+        }
+
+        $grid=$this->add('MVCGrid');
+        $grid->setModel('Rental')
+            ->addCondition('customer_id',$this->api->auth->get('id'))
+            ->addCondition('is_returned',false)
+            ;
+        $grid->addColumn('button','return');
+
+        if($_GET['return']){
+            $rental = $grid->getModel()->loadData($_GET['return'])->returnMovie();
+
+            $grid->js(null,
+                    $this->js()->reload())->univ()->successMessage('Returned #'.$_GET['return'])
+                ->execute();
         }
 
     }

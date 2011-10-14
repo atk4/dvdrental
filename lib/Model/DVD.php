@@ -26,12 +26,4 @@ class Model_DVD extends Model_Table {
 
         return "if(($select) is null,'N','Y')";
     }
-    function rent($customer_id){
-        $m=$this->add('Model_Rental')
-            ->set('dvd_id',$this->get('id'))
-            ->set('customer_id',$customer_id)
-            ;
-        $m->update();
-        return $m;
-    }
 }
