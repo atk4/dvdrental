@@ -6,9 +6,32 @@ class Model_DVD extends Model_Table {
 
         $this->addField('movie_id')->refModel('Model_Movie');
         $this->addField('code');
+
+        $this->addfield('is_rented')
+            ->type('boolean')
+            ->calculated(true);
     }
     function toStringSQL($source_field, $dest_fieldname){
         return 'concat("DVD#",id,": ",(select name 
                     from movie m,dvd d where m.id=d.movie_id and d.id='.$source_field.')) as '.$dest_fieldname;
+    }
+    function calculate_is_rented(){
+        $select=$this->add('Model_Rental')
+            ->dsql()
+            ->field('id')
+            ->where('rental.dvd_id=dvd.id')
+            ->where('is_returned!=','Y')
+            ->select()
+            ;
+
+        return "if(($select) is null,'N','Y')";
+    }
+    function rent($customer_id){
+        $m=$this->add('Model_Rental')
+            ->set('dvd_id',$this->get('id'))
+            ->set('customer_id',$customer_id)
+            ;
+        $m->update();
+        return $m;
     }
 }
