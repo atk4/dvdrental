@@ -16,7 +16,6 @@ class Frontend extends ApiFrontend {
         $this->dbConnect();
 
         $menu = $this->add('Menu',null,'Menu');
-        $menu->addMenuItem('Schema Generator','sg');
         $menu->addMenuItem('Manager','mgr');
     }
 }
