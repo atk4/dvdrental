@@ -9,7 +9,7 @@ class Model_Rental extends Model_Table {
         $this->addField('date_rented')->defaultValue(date('Y-m-d'))->type('date');
         $this->addField('date_returned')->type('date');
         
-        $this->addField('is_returned')->type('boolean');
+        $this->addField('is_returned')->type('boolean')->defaultValue(false);
     }
     function returnMovie(){
         $this
