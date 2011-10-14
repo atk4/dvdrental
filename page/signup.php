@@ -11,6 +11,7 @@ class page_signup extends Page {
         $form = $this->add('MVCForm');
         $form->setModel($model);
         $form->addField('password','confirm_password');
+        $form->addSubmit();
 
         $form->onSubmit(function($form){
             if($form->get('password') != $form->get('confirm_password'))
