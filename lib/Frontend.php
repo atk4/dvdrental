@@ -12,7 +12,10 @@ class Frontend extends ApiFrontend {
             ->setParent($this->pathfinder->atk_location);
 
         $this->add('jUI');
-        $this->js()->_load('atk4_univ');
+        $this->js()
+            ->_load('atk4_univ')
+            ->_load('ui.atk4_notify')
+            ;
         $this->dbConnect();
 
         $this->auth=$this->add('RentalAuth');

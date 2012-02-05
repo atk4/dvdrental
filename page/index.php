@@ -13,6 +13,8 @@ class page_index extends Page {
         $form->addField('line','login');
         $form->addfield('password','password');
         $form->addSubmit('Login');
+        $form->addButton('Sign-up')->js('click')
+            ->univ()->location($this->api->getDestinationURL('signup'));
 
         if($form->isSubmitted()){
 
