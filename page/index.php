@@ -3,6 +3,11 @@ class page_index extends Page {
     function init(){
         parent::init();
 
+        if($this->api->auth->isLoggedIn()){
+            $this->api->redirect('video');
+        }
+
+
         $form = $this->add('Form',null,'LoginForm');
         $form->setFormClass('vertical');
         $form->addField('line','login');
@@ -23,7 +28,6 @@ class page_index extends Page {
 
                 // Manually log-in
                 $auth->login($l);
-                var_Dump($l);
                 $form->js()->univ()->redirect('video')->execute();
             }
             $form->getElement('password')->displayFieldError('Incorrect login');

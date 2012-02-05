@@ -33,11 +33,15 @@ class Admin extends ApiFrontend {
         $this->add('BasicAuth')->allow('admin','demo')->check();
 
         $menu=$this->add('Menu',null,'Menu');
-        $menu->addMenuItem('Schema Generator','sg');
+        $menu->addMenuItem('Frontend','frontend');
         $menu->addMenuItem('Manager','mgr');
 
     }
     function page_index($p){
         $this->api->redirect('mgr');
+    }
+    function page_frontend($p){
+        header('Location: '.$this->pm->base_path.'..');
+        exit;
     }
 }

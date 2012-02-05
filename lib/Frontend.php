@@ -19,12 +19,18 @@ class Frontend extends ApiFrontend {
         $this->auth->allow('demo','demo');
 
         $menu = $this->add('Menu',null,'Menu');
-        if($this->auth){
+        if($this->auth->isLoggedIn()){
             $menu->addMenuItem('Home','video');
             $menu->addMenuItem('account');
+            $menu->addMenuItem('admin');
             $menu->addMenuItem('logout');
         }else{
             $menu->addMenuItem('Home','index');
+            $menu->addMenuItem('admin');
         }
+    }
+    function page_admin($p){
+        header('Location: '.$this->pm->base_path.'admin');
+        exit;
     }
 }
