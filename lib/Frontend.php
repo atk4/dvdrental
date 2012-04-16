@@ -16,15 +16,19 @@ class Frontend extends ApiFrontend {
         $this->dbConnect();
 
         $this->auth=$this->add('RentalAuth');
-        $this->auth->allow('demo','demo');
 
         $menu = $this->add('Menu',null,'Menu');
         if($this->auth){
-            $menu->addMenuItem('Home','video');
+            $menu->addMenuItem('video','Home');
             $menu->addMenuItem('account');
             $menu->addMenuItem('logout');
         }else{
-            $menu->addMenuItem('Home','index');
+            $menu->addMenuItem('index','Home');
         }
+        $menu->addMenuItem('admin');
+    }
+    function page_admin($p){
+        header('Location: '.$this->pm->base_path.'admin');
+        exit;
     }
 }

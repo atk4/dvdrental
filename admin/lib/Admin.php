@@ -30,14 +30,19 @@ class Admin extends ApiFrontend {
             ;
 
         // Allow user: "admin", with password: "demo" to use this application
-        $this->add('BasicAuth')->allow('admin','demo')->check();
+        $this->add('BasicAuth')->allow('demo','demo')->check();
 
         $menu=$this->add('Menu',null,'Menu');
-        $menu->addMenuItem('Schema Generator','sg');
+        $menu->addMenuItem('back');
         $menu->addMenuItem('Manager','mgr');
+
+        $this->add('H1',null,'logo')->set('Welcome to DVDRental Admin');
 
     }
     function page_index($p){
         $this->api->redirect('mgr');
+    }
+    function page_back($p){
+        header('Location: '.dirname($this->pm->base_path));
     }
 }

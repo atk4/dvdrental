@@ -16,14 +16,10 @@ class page_index extends Page {
             $p=$form->get('password');
 
             // Manually encrypt password
-            $enc_p = $auth->encryptPassword($p,$l);
-
-            // Manually verify login
-            if($auth->verifyCredintials($l,$enc_p)){
+            if($auth->verifyCredintials($l,$p)){
 
                 // Manually log-in
                 $auth->login($l);
-                var_Dump($l);
                 $form->js()->univ()->redirect('video')->execute();
             }
             $form->getElement('password')->displayFieldError('Incorrect login');
