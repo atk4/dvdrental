@@ -12,13 +12,16 @@ class Frontend extends ApiFrontend {
             ->setParent($this->pathfinder->atk_location);
 
         $this->add('jUI');
-        $this->js()->_load('atk4_univ');
+        $this->js()
+            ->_load('atk4_univ')
+            ->_load('ui.atk4_notify')
+            ;
         $this->dbConnect();
 
         $this->auth=$this->add('RentalAuth');
 
         $menu = $this->add('Menu',null,'Menu');
-        if($this->auth){
+        if($this->auth->isLoggedIn()){
             $menu->addMenuItem('video','Home');
             $menu->addMenuItem('account');
             $menu->addMenuItem('logout');

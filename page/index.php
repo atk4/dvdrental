@@ -3,11 +3,18 @@ class page_index extends Page {
     function init(){
         parent::init();
 
+        if($this->api->auth->isLoggedIn()){
+            $this->api->redirect('video');
+        }
+
+
         $form = $this->add('Form',null,'LoginForm');
         $form->setFormClass('vertical');
         $form->addField('line','login');
         $form->addfield('password','password');
         $form->addSubmit('Login');
+        $form->addButton('Sign-up')->js('click')
+            ->univ()->location($this->api->getDestinationURL('signup'));
 
         if($form->isSubmitted()){
 
