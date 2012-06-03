@@ -1,6 +1,6 @@
 <?php
 class Model_Customer extends Model_Table {
-    public $entity_code='customer';
+    public $table='customer';
     
     function init(){
         parent::init();
