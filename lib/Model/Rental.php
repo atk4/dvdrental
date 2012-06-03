@@ -4,8 +4,8 @@ class Model_Rental extends Model_Table {
     function init(){
         parent::init();
 
-        $this->addField('customer_id')->refModel('Model_Customer');
-        $this->addField('dvd_id')->refModel('Model_DVD');
+        $this->hasOne('Customer');
+        $this->hasOne('DVD');
         $this->addField('date_rented')->defaultValue(date('Y-m-d'))->type('date');
         $this->addField('date_returned')->type('date');
         
@@ -15,6 +15,6 @@ class Model_Rental extends Model_Table {
         $this
             ->set('date_returned',date('Y-m-d'))
             ->set('is_returned',true)
-            ->update();
+            ->save();
     }
 }
