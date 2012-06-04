@@ -24,7 +24,7 @@ class Admin extends ApiFrontend {
             ;
 
         // Allow user: "admin", with password: "demo" to use this application
-        $this->add('BasicAuth')->allow('admin','demo')->check();
+        $this->add('Auth_Basic')->allow('admin','demo')->check();
 
         $menu=$this->add('Menu',null,'Menu');
         $menu->addMenuItem('Schema Generator','sg');
