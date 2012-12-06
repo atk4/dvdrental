@@ -34,7 +34,7 @@ class Admin extends ApiFrontend {
 
         $menu=$this->add('Menu',null,'Menu');
         $menu->addMenuItem('back');
-        $menu->addMenuItem('Manager','mgr');
+        $menu->addMenuItem('mgr','Manager');
 
         $this->add('H1',null,'logo')->set('Welcome to DVDRental Admin');
 

@@ -4,6 +4,8 @@ class page_video extends Page {
         parent::init();
         $this->api->auth->check();
 
-        $this->add('MVCGrid')->setModel('Movie');
+        $this->add('H1')->set('Movies to rent');
+
+        $this->add('Grid')->setModel('Movie');
     }
 }

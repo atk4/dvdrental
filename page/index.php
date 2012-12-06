@@ -8,6 +8,7 @@ class page_index extends Page {
         }
 
 
+
         $form = $this->add('Form',null,'LoginForm');
         $form->setFormClass('vertical');
         $form->addField('line','login');
@@ -23,7 +24,7 @@ class page_index extends Page {
             $p=$form->get('password');
 
             // Manually encrypt password
-            if($auth->verifyCredintials($l,$p)){
+            if($auth->verifyCredentials($l,$p)){
 
                 // Manually log-in
                 $auth->login($l);
